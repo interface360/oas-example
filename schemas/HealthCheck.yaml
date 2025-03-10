@@ -1,0 +1,97 @@
+openapi: "3.0.0"
+info:
+  title: Health Check Common API
+  version: 1.0.0
+paths:
+  /health-check:
+    get:
+      summary: System Status
+      responses:
+        '200':
+          description: System Status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthCheck"      
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: E001 
+        name:
+          type: string
+          example: Ray Arnado
+        email:
+          type: string
+          format: email
+          example: ray@arnado.me
+        created_at:
+          type: string
+          format: date-time
+          example: 2023-01-01T12:00:00Z
+      required:
+        - id
+        - name
+        - email
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 101
+        name:
+          type: string
+          example: Widget Pro
+        description:
+          type: string
+          example: A high-quality widget.
+        price:
+          type: number
+          format: float
+          example: 99.99
+        in_stock:
+          type: boolean
+          example: true
+        created_at:
+          type: string
+          format: date-time
+          example: 2023-01-01T12:00:00Z
+      required:
+        - id
+        - name
+        - price
+    HealthCheck:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - UP
+            - DOWN
+          example: UP
+        timestamp:
+          type: string
+          format: date-time
+          example: 2025-03-10T12:00:00Z
+        details:
+          type: object
+          properties:
+            database:
+              type: string
+              enum:
+                - UP
+                - DOWN
+              example: UP
+            cache:
+              type: string
+              enum:
+                - UP
+                - DOWN
+              example: DOWN
+      required:
+        - status
+        - timestamp        
