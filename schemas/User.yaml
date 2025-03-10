@@ -1,0 +1,13 @@
+# schemas/User.yaml
+type: object
+properties:
+  id:
+    type: string
+    description: User ID
+    example: 'XYZ-001'
+  name:
+    type: string
+    description: User Name
+    example: 'Ray Arnado'
+required:
+  - id
