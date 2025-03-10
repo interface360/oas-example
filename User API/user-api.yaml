@@ -1,0 +1,39 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: User API
+  description: User API
+paths:
+  /users:
+    get:
+      summary: Get users
+      responses:
+        '200':
+          description: Users
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Users"
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User ID
+          example: 'XYZ-0001'
+        name:
+          type: string
+          description: User's name 
+          example: 'ray.arnado'
+    Users:
+      type: array
+      items:
+        $ref: "#/components/schemas/User"
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+
