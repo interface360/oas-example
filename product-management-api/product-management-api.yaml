@@ -1,0 +1,54 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Product Management API
+  description: Product Management API
+paths: 
+  /products:
+    get:
+      summary: Get products
+      responses:
+        '200':
+          description: Products
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Products"
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Product ID
+          example: 'ITEM-0001'
+        name:
+          type: string
+          description: Product Name
+          example: 'Google Pixel 9 Pro'
+        memory:
+          type: string
+          description: Memory
+          example: '128GB'
+        user:
+          type: object
+          $ref: "#/components/schemas/User"
+          description: User Info
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User ID
+          example: 'XYZ-0001'
+        name:
+          type: string
+          description: User's name 
+          example: 'ray.arnado'
+    Products:
+      type: array
+      items:
+        $ref: "#/components/schemas/Product"
+
+
